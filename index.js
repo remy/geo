@@ -7,7 +7,11 @@ var app = express();
 app.use(function (req, res) {
   var ip = req.connection.remoteAddress;
   var geo = geoip.lookup(ip);
-  res.jsonp(geo ? geo.county : 'null');
+  var ret = {
+    ip: ip,
+    county: geo ? geo.county : null
+  };
+  res.jsonp(ret);
 });
 
 require('http').createServer(app).listen(process.env.PORT||3000);
