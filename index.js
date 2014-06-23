@@ -18,7 +18,8 @@ app.use(function (req, res) {
   var geo = geoip.lookup(ip);
   var ret = {
     ip: ip,
-    county: geo ? geo.county : null
+    geo: geo,
+    // county: geo ? geo.county : null
   };
   res.jsonp(ret);
 });
