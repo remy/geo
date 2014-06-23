@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 
 app.use(function (req, res) {
-  var ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
+  var ip = req.headers['x-real-ip'] || req.ip || '0.0';
   var geo = geoip.lookup(ip);
   var ret = {
     ip: ip,
